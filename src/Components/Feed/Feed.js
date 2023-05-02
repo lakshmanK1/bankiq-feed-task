@@ -1,30 +1,8 @@
-import { useEffect, useState } from 'react';
 import './FeedCmp.css';
 
-function FeedCmp() {
-  const [products, setProducts] = useState([])
-  const [page, setPage] = useState(1)
+function FeedCmp(props) {
 
-  const fetchProducts = async () => {
-    const res = await fetch(`https://dummyjson.com/products?limit=100`)
-    const data = await res.json()
-
-    console.log(data);
-
-    if (data && data.products) {
-      setProducts(data.products)
-    }
-  }
-
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
-  const selectPageHandler = (selectedPage) => {
-    if (selectedPage >= 1 && selectedPage <= products.length / 10 && selectedPage !== page) {
-      setPage(selectedPage)
-    }
-  }
+const {products, page, selectPageHandler} = props;
 
   return (
     <div>
@@ -32,9 +10,14 @@ function FeedCmp() {
         {products.slice(page * 10 - 10, page * 10).map((prod) => {
           return <span className="feed__single" key={prod.id}>
             <img src={prod.thumbnail} alt={prod.title} /> {/* alt is imp */}
+            <div className='details'>
             <span>
               {prod.title}
             </span>
+            <span>
+              {prod.description}
+            </span>
+            </div>
           </span>
         })}
       </div>}
