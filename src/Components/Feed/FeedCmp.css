@@ -41,3 +41,11 @@
     display: flex;
     flex-direction: column;
   }
+
+  .pagination__disable{
+    opacity: 0;
+  }
+  
+  .pagination__selected{
+    background-color: rgb(220, 220, 220);
+  }

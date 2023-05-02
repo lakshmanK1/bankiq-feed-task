@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import Feed from "./Components/Feed/Feed";
+import Table from "./Components/Table/Table";
 import Search from "./Components/Search/Search";
 import RawData from './JsonData/RawData.json'
 
@@ -9,23 +10,9 @@ function App() {
   const [searchIp, setSearchIp] = useState('');
   const [page, setPage] = useState(1);
 
-  // const fetchProducts = async () => {
-  //   const res = await fetch(`https://dummyjson.com/products?limit=100`)
-  //   const data = await res.json()
-
-  //   console.log(data);
-
-  //   if (data && data.products) {
-  //     setProducts(data.products)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchProducts()
-  // }, []);
-
   useEffect(()=>{
-    const data = RawData.filter((data)=>data.title.toLowerCase().includes(searchIp.toLowerCase()));
+    const data = RawData.filter((data)=>data.title.toLowerCase().includes(searchIp.toLowerCase())) ||
+    RawData.filter((data)=>data.description.toLowerCase().includes(searchIp.toLowerCase())) ;
     setFilteredData(data);
   },[searchIp]);
 
@@ -42,6 +29,7 @@ function App() {
         <Search setSearchIp={setSearchIp}/>
       </div>
       <Feed products={filteredData} page={page} selectPageHandler={selectPageHandler}/>
+      <Table products={filteredData} page={page}/>
     </div>
   );
 }
