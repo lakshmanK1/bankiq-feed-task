@@ -1,20 +1,15 @@
 .searchInput {
-  width: 220px;
+  width: 80%;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid white;
-  background: transparent;
+  border: 1px solid rgb(33, 29, 29);
   outline: none;
-  color: white;
+  color: rgb(38, 35, 35);
   font-size: 20px;
 }
 
 .searchDiv {
-  margin: auto;
-  width: 220px;
+  width: 60%;
   padding: 45px;
-  background-color: #7b8fa1;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
-  margin-top: 25px;
 }

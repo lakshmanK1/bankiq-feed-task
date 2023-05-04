@@ -1,70 +1,90 @@
-import React,{useState} from 'react'
-import RawData from '../../JsonData/RawData.json'
+import React, { useState, useEffect } from "react";
+import "./Sorting.css";
 
-function Sorting({FilteredData, setFilteredData}) {
-    const [sorted, setSorted] = useState({ value: "Sort", data: RawData });
+function Sorting({ filteredData, setFilteredData, setPage }) {
+  const [sortValue, setSortValue] = useState("Sort");
+  const [sortedProducts, setSortedProducts] = useState(filteredData);
+  console.log(filteredData);
 
-    const handleSort = (e) => {
-        setSorted({ value: e.target.value });
-      };
-    
-      function strip(title) {
-        return title.replace(/^(a|an|the)\s/i, "");
-      }
-    
-      const handleFormSubmit = (e) => {
-        e.preventDefault();
-    
-        switch (sorted.value) {
-          case "Low Price":
-            let LP = [...Array(sorted.data)];
-            let LP_data = LP.sort((a, b) => (a.price > b.price ? 1 : -1));
-            setSorted({ data:LP_data });
-            setFilteredData(sorted.data);
-            break;
-    
-          case "High Price":
-            let HP = [...Array(sorted.data)];
-            let HP_data = HP.sort((a, b) => (b.price > a.price ? 1 : -1));
-            setSorted({ data:HP_data });
-            setFilteredData(sorted.data);
-            break;
-    
-          case "A-Z":
-            let AZ = [...Array(sorted.data)];
-            let AZ_data =  AZ.sort((a, b) => (strip(a.title) > strip(b.title) ? 1 : -1));
-            setSorted({data:AZ_data});
-            setFilteredData(sorted.data);
-            break;
-    
-          case "Z-A":
-            let ZA = [...Array(sorted.data)];
-            let ZA_data = ZA.sort((a, b) => (strip(b.title) > strip(a.title) ? 1 : -1));
-            setSorted({ data: ZA_data});
-            setFilteredData(sorted.data);
-            break;
-    
-          default:
-            setSorted({data:sorted.data});
-            setFilteredData(sorted.data);
-            break;
-        }
-      };
+  const handleSort = (e) => {
+    console.log(e.target.value);
+    setSortValue(e.target.value);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setPage(1);
+
+    switch (sortValue) {
+      case "A-Z":
+        let orignalDataForAtoZ = [...filteredData];
+        let AtoZ_Products = orignalDataForAtoZ.sort((a, b) => 
+           a.title.localeCompare(b.title)
+        );
+        console.log(AtoZ_Products);
+        setFilteredData(AtoZ_Products);
+        break;
+
+      case "Z-A":
+        let orignalDataForZtoA = [...filteredData];
+        let ZtoA_data = orignalDataForZtoA.sort((a, b) =>
+          b.title.localeCompare(a.title)
+        );
+        setFilteredData(ZtoA_data);
+        break;
+
+      case "Low-Price":
+        let orignalDataForLowPrice = [...filteredData];
+        const sortOnLowPrice = (a, b) => {
+          return a.price - b.price;
+        };
+
+        let LP_data = orignalDataForLowPrice.sort(sortOnLowPrice);
+        setFilteredData(LP_data);
+        break;
+
+      case "High-Price":
+        let orignalDataForHighPrice = [...filteredData];
+        const sortOnHighPrice = (a, b) => {
+          return b.price - a.price;
+        };
+
+        let HP_data = orignalDataForHighPrice.sort(sortOnHighPrice);
+        setFilteredData(HP_data);
+        break;
+
+      default:
+        setSortValue("Sort");
+        break;
+    }
+  };
 
   return (
     <div>
-        <form onSubmit={handleFormSubmit}>
-        <select value={sorted.value} onChange={handleSort}>
-            <option value='Sort'>Sort</option>
-            <option value='A-Z'>A-Z</option>
-            <option value='Z-A'>Z-A</option>
-            <option value='Low Price'>Low Price</option>
-            <option value='High Price'>High Price</option>
+      <form onSubmit={handleFormSubmit}>
+        <select className="selectEle" value={sortValue} onChange={handleSort}>
+          <option className="option" value="Sort">
+            Sort
+          </option>
+          <option className="option" value="A-Z">
+            A-Z
+          </option>
+          <option className="option" value="Z-A">
+            Z-A
+          </option>
+          <option className="option" value="Low-Price">
+            Low-Price
+          </option>
+          <option className="option" value="High-Price">
+            High-Price
+          </option>
         </select>
-        <button type='submit'>Filter</button>
-        </form>
+        <button className="sortingBtn" type="submit">
+          Filter
+        </button>
+      </form>
     </div>
-  )
+  );
 }
 
-export default Sorting
+export default Sorting;
