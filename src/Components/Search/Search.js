@@ -1,13 +1,18 @@
-import React,{useState} from 'react'
-import './Search.css'
+import React from "react";
+import "./Search.css";
 
-function Search({searchInputChange, searchIp}) {
-
+function Search({ searchInputChange, urlParamsValue }) {
   return (
-    <div className='searchDiv'>
-        <input className='searchInput' type='text' value={searchIp} placeholder='search here..' onChange={(e)=>searchInputChange(e.target.value)}/>
+    <div className="searchDiv">
+      <input
+        className="searchInput"
+        type="text"
+        defaultValue={urlParamsValue}
+        placeholder="search here.."
+        onChange={(e) => searchInputChange(e.target.value)}
+      />
     </div>
-  )
+  );
 }
 
-export default Search
+export default Search;

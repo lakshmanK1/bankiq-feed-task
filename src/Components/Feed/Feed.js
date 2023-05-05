@@ -1,7 +1,6 @@
 import './FeedCmp.css';
 
 function FeedCmp(props) {
-
 const {filteredData, page, selectPageHandler} = props;
 
 console.log(filteredData.length);
