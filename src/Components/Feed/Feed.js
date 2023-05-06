@@ -11,14 +11,14 @@ console.log(filteredData.length);
           return <span className="feed__single" key={prod.id}>
             <img src={prod.thumbnail} alt={prod.title} /> 
             <div className='details'>
-            <span>
+            <span className='title'>
               {prod.title}
             </span>
-            <span>
+            <span className='description'>
               {prod.description}
             </span>
-            <span>
-              {prod.price}
+            <span className='price'>
+            ₹ {prod.price}
             </span>
             </div>
           </span>

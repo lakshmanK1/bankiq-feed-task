@@ -6,24 +6,22 @@ function Table({products, page}) {
     <div className='tableDiv'>
         <table className='table'>
             <thead>
-                <tr>
-                    <th>id</th>
+                    <th>S.No</th>
                     <th>Title</th>
                     <th>Brand</th>
                     <th>Category</th>
                     <th>Price</th>
-                </tr>
             </thead>
             <tbody>
                 {
                     products.slice(page*10-10, page*10).map((prod)=>{
                         return(
                             <tr key={prod.id}>
-                                <td>{prod.id}</td>
-                                <td>{prod.title}</td>
-                                <td>{prod.brand}</td>
-                                <td>{prod.category}</td>
-                                <td>₹ {prod.price}</td>
+                                <td data-label='S.No'>{prod.id}</td>
+                                <td data-label='Title'>{prod.title}</td>
+                                <td data-label='Brand'>{prod.brand}</td>
+                                <td data-label='Category'>{prod.category}</td>
+                                <td data-label='Price'>₹ {prod.price}</td>
                             </tr>
                         )
                     })

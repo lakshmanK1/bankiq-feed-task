@@ -9,23 +9,56 @@
 .table{
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 80%;
+  width: 98%;
 }
 
 .table td, .table th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px 15px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .table td{
+    color: #1E375AB3;
   }
 
 
-.table tr:nth-child(even){background-color: #f2f2f2;}
+.table tr:nth-child(even){background-color: #00ABE4;}
 
 .table tr:hover {background-color: #ddd;}
 
 .table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #577D86;
-  color: white;
+  background-color: #1e375a;;
+  color: #FFFFFF;
+}
+
+
+@media (max-width:500px){
+  .table thead{
+    display: none;
+  }
+
+  .table, .table tbody, .table tr, .table td{
+    display: block;
+    width: 100%;
+  }
+  .table tr{
+    margin-bottom: 15px;
+  }
+  .table td{
+    text-align: right;
+    padding-left: 0%;
+    position: relative;
+  }
+  .table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+  }
 }
