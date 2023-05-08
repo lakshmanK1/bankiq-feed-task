@@ -4,13 +4,15 @@ import './Table.css'
 function Table({products, page}) {
   return (
     <div className='tableDiv'>
-        <table className='table'>
+        <table className='table' data-testid="table-comp">
             <thead>
+                <tr>
                     <th>S.No</th>
                     <th>Title</th>
                     <th>Brand</th>
                     <th>Category</th>
                     <th>Price</th>
+                </tr>
             </thead>
             <tbody>
                 {

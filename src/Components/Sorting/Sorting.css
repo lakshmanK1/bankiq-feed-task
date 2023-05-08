@@ -1,5 +1,5 @@
 .selectEle {
-  background-color: #abcd;
+  background-color: #00ABE4;
   margin: 5px;
   color: white;
   padding: 12px;
@@ -10,19 +10,6 @@
   -webkit-appearance: button;
   appearance: button;
   outline: none;
-}
-
-.sortingBtn {
-  cursor: pointer;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  color: white;
-  background-color: #2192ff;
-  border: 1px solid white;
-  margin: 10px;
-  border-radius: 4px;
-  padding: 1rem 3rem;
 }
 
 .option{

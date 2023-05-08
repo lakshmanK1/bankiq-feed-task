@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Feed from "./Components/Feed/Feed";
-import Table from "./Components/Table/Table";
 import Search from "./Components/Search/Search";
 import AllProducts from "./JsonData/AllProducts.json";
 import Sorting from "./Components/Sorting/Sorting";
@@ -10,13 +9,19 @@ import {FcMindMap} from 'react-icons/fc'
 
 function App() {
   const [filteredData, setFilteredData] = useState([]);
+  const [afterSort, setAfterSort] = useState([]);
   const [sortValue, setSortValue] = useState("Sort");
   const [searchIp, setSearchIp] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); 
 
   // useSearchParams
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortParams, setSortParams] = useSearchParams();
   const urlSearchParamsValue = searchParams.get("searchBy");
+  const urlSortParamsValue = sortParams.get("sortBy");
+
+  console.log(urlSearchParamsValue);
+  console.log(urlSortParamsValue);
 
   useEffect(() => {
     const filteredProducts = AllProducts.filter(
@@ -40,22 +45,13 @@ function App() {
   const searchInputChange = (val) => {
     setSearchIp(val);
     setPage(1);
-    const copy = new URLSearchParams(searchParams);
-    copy.set("searchBy", val);
-    setSearchParams(copy);
+    setSearchParams({'searchBy':val});
   };
 
-  const productsDataByParams = urlSearchParamsValue
-    ? filteredData.filter((data) =>
-        data.title.toLowerCase().includes(urlSearchParamsValue.toLowerCase())
-      )
-    : filteredData;
-
-  // For Sorting Component
-
+  //For Sorting Component
   const getSortByValue = (value) => {
     setSortValue(value);
-    const copy = new URLSearchParams(searchParams);
+    const copy = new URLSearchParams(sortParams);
     copy.set("sortBy", value);
     setSearchParams(copy);
   };
@@ -63,42 +59,48 @@ function App() {
   const handleSortingAction = () => {
     switch (sortValue) {
       case "ByTitle":
-        let orignalProductsData = [...filteredData];
-        let sortedByTitle = orignalProductsData.sort((a, b) =>
-          a.title.localeCompare(b.title)
-        );
-        return sortedByTitle;
+        // let orignalProductsData = [...filteredData];
+        const sortOnTitle = (a, b) => {
+        return a.title.localeCompare(b.title)
+        }
+        setAfterSort(filteredData.sort(sortOnTitle));
         break;
 
       case "Low-Price":
-        let orignalDataForLowPrice = [...filteredData];
+        // let orignalDataForLowPrice = [...filteredData];
         const sortOnLowPrice = (a, b) => {
           return a.price - b.price;
         };
 
-        let LP_data = orignalDataForLowPrice.sort(sortOnLowPrice);
-        setFilteredData(LP_data);
+        let LP_data = filteredData.sort(sortOnLowPrice);
+        setAfterSort(LP_data);
         break;
 
       case "High-Price":
-        let orignalDataForHighPrice = [...filteredData];
+        // let orignalDataForHighPrice = [...filteredData];
         const sortOnHighPrice = (a, b) => {
           return b.price - a.price;
         };
 
-        let HP_data = orignalDataForHighPrice.sort(sortOnHighPrice);
-        setFilteredData(HP_data);
+        let HP_data = filteredData.sort(sortOnHighPrice);
+        setAfterSort(HP_data);
         break;
 
       default:
-        setSortValue("Sort");
         return filteredData;
         break;
     }
   };
 
+  const productsDataByParams = urlSearchParamsValue
+  ? filteredData.filter((data) =>
+      data.title.toLowerCase().includes(urlSearchParamsValue.toLowerCase()) ||
+      data.description.toLowerCase().includes(urlSearchParamsValue.toLowerCase())
+    )
+  : urlSortParamsValue ? afterSort : filteredData;
+
   return (
-    <div>
+    <>
       <h1 className="header"><span className="Icon"><FcMindMap/></span>Available Feeds</h1>
       <div className="searchsortDiv">
         <Search
@@ -111,6 +113,8 @@ function App() {
           getSortByValue={getSortByValue}
           handleSortingAction={handleSortingAction}
           sortValue={sortValue}
+          sortParams={sortParams}
+          setSortParams={setSortParams}
         />
 
       </div>
@@ -119,8 +123,7 @@ function App() {
         page={page}
         selectPageHandler={selectPageHandler}
       />
-      <Table products={productsDataByParams} page={page} />
-    </div>
+    </>
   );
 }
 

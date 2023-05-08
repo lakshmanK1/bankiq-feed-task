@@ -10,15 +10,16 @@
 }
 
 .feed__single{
-    height: 20rem;
+    height: 22rem;
     list-style: none;
-    padding: 20px;
+    padding: 25px;
     background-color: #FFFFFF;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
     border-top: 4px solid #00ABE4;
+    overflow: auto;
 }
 
 .feed__single > img{
@@ -30,7 +31,7 @@
 }
 
 .pagination {
-    padding: 5px;
+    padding: 2%;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));

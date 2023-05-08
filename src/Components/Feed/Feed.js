@@ -1,14 +1,14 @@
 import './FeedCmp.css';
+import Table from '../Table/Table';
 
 function FeedCmp(props) {
 const {filteredData, page, selectPageHandler} = props;
 
-console.log(filteredData.length);
   return (
-    <div>
+    <div data-testid="feed-component">
       {filteredData.length > 0 && <div className="feeds">
         {filteredData.slice(page * 10 - 10, page * 10).map((prod) => {
-          return <span className="feed__single" key={prod.id}>
+          return <span className="feed__single" key={prod.id} data-testid='single_card'>
             <img src={prod.thumbnail} alt={prod.title} /> 
             <div className='details'>
             <span className='title'>
@@ -24,6 +24,8 @@ console.log(filteredData.length);
           </span>
         })}
       </div>}
+
+      <Table products={filteredData} page={page}/>
       
      {filteredData.length > 0 && <div className="pagination">
         <span onClick={() => selectPageHandler(page - 1)} className={page > 1 ? "" : "pagination__disable"}>◀</span>

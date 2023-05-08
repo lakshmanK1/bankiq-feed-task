@@ -6,13 +6,15 @@ function Search({ searchInputChange, urlSearchParamsValue }) {
   return (
     <div className="Card">
       <div className="CardInner">
-        <label>Search for your favourite food</label>
+        <label htmlFor="search-input">Search for your favourite feed</label>
         <div className="container">
           <div className="Icon">
             <BsSearch />
           </div>
           <div className="InputContainer">
             <input
+              id="search-input"
+              data-testid='input-field'
               className="searchInput"
               type="text"
               defaultValue={urlSearchParamsValue}
@@ -23,15 +25,7 @@ function Search({ searchInputChange, urlSearchParamsValue }) {
         </div>
       </div>
     </div>
-    // <div className="searchDiv">
-    //   <input
-    //     className="searchInput"
-    //     type="text"
-    //     defaultValue={urlSearchParamsValue}
-    //     placeholder="search here.."
-    //     onChange={(e) => searchInputChange(e.target.value)}
-    //   />
-    // </div>
+
   );
 }
 
