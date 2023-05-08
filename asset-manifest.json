@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bankiq-feed-task/static/css/main.f41a6fd1.css",
-    "main.js": "/bankiq-feed-task/static/js/main.315d8b4d.js",
+    "main.css": "/bankiq-feed-task/static/css/main.fbf42c37.css",
+    "main.js": "/bankiq-feed-task/static/js/main.8625b86f.js",
     "static/js/787.f2bcbc16.chunk.js": "/bankiq-feed-task/static/js/787.f2bcbc16.chunk.js",
     "index.html": "/bankiq-feed-task/index.html",
-    "main.f41a6fd1.css.map": "/bankiq-feed-task/static/css/main.f41a6fd1.css.map",
-    "main.315d8b4d.js.map": "/bankiq-feed-task/static/js/main.315d8b4d.js.map",
+    "main.fbf42c37.css.map": "/bankiq-feed-task/static/css/main.fbf42c37.css.map",
+    "main.8625b86f.js.map": "/bankiq-feed-task/static/js/main.8625b86f.js.map",
     "787.f2bcbc16.chunk.js.map": "/bankiq-feed-task/static/js/787.f2bcbc16.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f41a6fd1.css",
-    "static/js/main.315d8b4d.js"
+    "static/css/main.fbf42c37.css",
+    "static/js/main.8625b86f.js"
   ]
 }
