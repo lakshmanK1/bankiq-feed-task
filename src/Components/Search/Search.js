@@ -15,7 +15,6 @@ function Search({ searchInputChange, urlSearchParamsValue }) {
             <input
               id="search-input"
               data-testid='input-field'
-              className="searchInput"
               type="text"
               defaultValue={urlSearchParamsValue}
               placeholder="search here.."
@@ -29,4 +28,4 @@ function Search({ searchInputChange, urlSearchParamsValue }) {
   );
 }
 
-export default Search;
+export default React.memo(Search);

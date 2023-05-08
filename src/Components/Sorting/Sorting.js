@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./Sorting.css";
 
 function Sorting(props) {
-
-  const {getSortByValue, handleSortingAction, sortValue, sortParams, setSortParams} = props;
+  const {getSortByValue, handleSortingAction, sortValue} = props;
 
   return (
     <div>
@@ -31,4 +30,4 @@ function Sorting(props) {
   );
 }
 
-export default Sorting;
+export default React.memo(Sorting);

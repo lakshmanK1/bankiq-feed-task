@@ -1,5 +1,6 @@
 import './FeedCmp.css';
 import Table from '../Table/Table';
+import React from 'react';
 
 function FeedCmp(props) {
 const {filteredData, page, selectPageHandler} = props;
@@ -18,7 +19,7 @@ const {filteredData, page, selectPageHandler} = props;
               {prod.description}
             </span>
             <span className='price'>
-            ₹ {prod.price}
+            $ {prod.price}
             </span>
             </div>
           </span>
@@ -40,4 +41,4 @@ const {filteredData, page, selectPageHandler} = props;
   );
 }
 
-export default FeedCmp;
+export default React.memo(FeedCmp);

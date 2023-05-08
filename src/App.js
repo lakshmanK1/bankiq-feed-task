@@ -19,9 +19,7 @@ function App() {
   const [sortParams, setSortParams] = useSearchParams();
   const urlSearchParamsValue = searchParams.get("searchBy");
   const urlSortParamsValue = sortParams.get("sortBy");
-
-  console.log(urlSearchParamsValue);
-  console.log(urlSortParamsValue);
+  console.log(urlSortParamsValue)
 
   useEffect(() => {
     const filteredProducts = AllProducts.filter(
@@ -59,31 +57,27 @@ function App() {
   const handleSortingAction = () => {
     switch (sortValue) {
       case "ByTitle":
-        // let orignalProductsData = [...filteredData];
         const sortOnTitle = (a, b) => {
         return a.title.localeCompare(b.title)
         }
-        setAfterSort(filteredData.sort(sortOnTitle));
+        let ByTitle = filteredData.sort(sortOnTitle);
+        setAfterSort(ByTitle);
         break;
 
       case "Low-Price":
-        // let orignalDataForLowPrice = [...filteredData];
         const sortOnLowPrice = (a, b) => {
           return a.price - b.price;
         };
-
-        let LP_data = filteredData.sort(sortOnLowPrice);
-        setAfterSort(LP_data);
+        let ByLowPrice =  filteredData.sort(sortOnLowPrice);
+        setAfterSort(ByLowPrice);
         break;
 
       case "High-Price":
-        // let orignalDataForHighPrice = [...filteredData];
         const sortOnHighPrice = (a, b) => {
           return b.price - a.price;
         };
-
-        let HP_data = filteredData.sort(sortOnHighPrice);
-        setAfterSort(HP_data);
+        let ByHighPrice = filteredData.sort(sortOnHighPrice);
+        setAfterSort(ByHighPrice);
         break;
 
       default:
@@ -97,7 +91,7 @@ function App() {
       data.title.toLowerCase().includes(urlSearchParamsValue.toLowerCase()) ||
       data.description.toLowerCase().includes(urlSearchParamsValue.toLowerCase())
     )
-  : urlSortParamsValue ? afterSort : filteredData;
+  : urlSortParamsValue ? filteredData : filteredData;
 
   return (
     <>
@@ -105,16 +99,15 @@ function App() {
       <div className="searchsortDiv">
         <Search
           searchInputChange={searchInputChange}
-          searchIp={searchIp}
           urlSearchParamsValue={urlSearchParamsValue}
         />
 
         <Sorting
           getSortByValue={getSortByValue}
           handleSortingAction={handleSortingAction}
-          sortValue={sortValue}
           sortParams={sortParams}
           setSortParams={setSortParams}
+          sortValue={sortValue}
         />
 
       </div>

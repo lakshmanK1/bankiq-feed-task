@@ -19,7 +19,11 @@
     border-radius: 10px;
     cursor: pointer;
     border-top: 4px solid #00ABE4;
-    overflow: auto;
+    overflow-y: scroll;
+}
+
+.feed__single::-webkit-scrollbar {
+  display: none;
 }
 
 .feed__single > img{
