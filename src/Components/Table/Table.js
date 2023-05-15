@@ -34,4 +34,4 @@ function Table({products, page}) {
   )
 }
 
-export default React.memo(Table)
+export default Table

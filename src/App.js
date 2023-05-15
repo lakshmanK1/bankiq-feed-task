@@ -9,7 +9,6 @@ import {FcMindMap} from 'react-icons/fc'
 
 function App() {
   const [filteredData, setFilteredData] = useState([]);
-  const [afterSort, setAfterSort] = useState([]);
   const [sortValue, setSortValue] = useState("Sort");
   const [searchIp, setSearchIp] = useState("");
   const [page, setPage] = useState(1); 
@@ -19,7 +18,6 @@ function App() {
   const [sortParams, setSortParams] = useSearchParams();
   const urlSearchParamsValue = searchParams.get("searchBy");
   const urlSortParamsValue = sortParams.get("sortBy");
-  console.log(urlSortParamsValue)
 
   useEffect(() => {
     const filteredProducts = AllProducts.filter(
@@ -29,6 +27,7 @@ function App() {
     );
     setFilteredData(filteredProducts);
   }, [searchIp]);
+
 
   const selectPageHandler = (selectedPage) => {
     if (
@@ -54,44 +53,17 @@ function App() {
     setSearchParams(copy);
   };
 
-  const handleSortingAction = () => {
-    switch (sortValue) {
-      case "ByTitle":
-        const sortOnTitle = (a, b) => {
-        return a.title.localeCompare(b.title)
-        }
-        let ByTitle = filteredData.sort(sortOnTitle);
-        setAfterSort(ByTitle);
-        break;
 
-      case "Low-Price":
-        const sortOnLowPrice = (a, b) => {
-          return a.price - b.price;
-        };
-        let ByLowPrice =  filteredData.sort(sortOnLowPrice);
-        setAfterSort(ByLowPrice);
-        break;
-
-      case "High-Price":
-        const sortOnHighPrice = (a, b) => {
-          return b.price - a.price;
-        };
-        let ByHighPrice = filteredData.sort(sortOnHighPrice);
-        setAfterSort(ByHighPrice);
-        break;
-
-      default:
-        return filteredData;
-        break;
-    }
-  };
-
+  const getBySort = urlSortParamsValue === 'ByTitle' ? filteredData.sort((a, b) => a.title.localeCompare(b.title)) :
+  urlSortParamsValue === 'Low-Price' ? filteredData.sort((a, b) => a.price - b.price) :
+  urlSortParamsValue === 'High-Price' ? filteredData.sort((a, b) => b.price - a.price) : filteredData
+  
   const productsDataByParams = urlSearchParamsValue
   ? filteredData.filter((data) =>
       data.title.toLowerCase().includes(urlSearchParamsValue.toLowerCase()) ||
       data.description.toLowerCase().includes(urlSearchParamsValue.toLowerCase())
     )
-  : urlSortParamsValue ? filteredData : filteredData;
+  : urlSortParamsValue ? getBySort  : filteredData;
 
   return (
     <>
@@ -104,7 +76,6 @@ function App() {
 
         <Sorting
           getSortByValue={getSortByValue}
-          handleSortingAction={handleSortingAction}
           sortParams={sortParams}
           setSortParams={setSortParams}
           sortValue={sortValue}

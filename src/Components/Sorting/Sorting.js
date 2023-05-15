@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Sorting.css";
 
 function Sorting(props) {
-  const {getSortByValue, handleSortingAction, sortValue} = props;
+  const {getSortByValue, sortValue} = props;
 
   return (
     <div>
@@ -11,9 +11,8 @@ function Sorting(props) {
         className="selectEle"
         value={sortValue}
         onChange={(e)=>getSortByValue(e.target.value)}
-        onClick={()=>handleSortingAction()}
       >
-        <option className="option" value="Sort">
+        <option className="option" value="--Slect--">
           --Select--
         </option>
         <option className="option" value="ByTitle">
