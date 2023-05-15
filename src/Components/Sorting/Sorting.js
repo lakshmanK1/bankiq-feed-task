@@ -2,14 +2,14 @@ import React from "react";
 import "./Sorting.css";
 
 function Sorting(props) {
-  const {getSortByValue, sortValue} = props;
+  const {getSortByValue, urlSortParamsValue} = props;
 
   return (
     <div>
       <select
         data-testid="sort-component"
         className="selectEle"
-        value={sortValue}
+        defaultValue={urlSortParamsValue}
         onChange={(e)=>getSortByValue(e.target.value)}
       >
         <option className="option" value="--Slect--">
