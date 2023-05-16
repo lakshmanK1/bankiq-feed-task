@@ -1,7 +1,6 @@
 
-
 @import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Hind&display=swap');
+
 
 
 :root {
@@ -17,7 +16,6 @@
   box-shadow: 
     -2px -2px 6px rgba(#fff, .6),
     2px 2px 12px #c8d8e7;
-  width: 100%;
 }
 
 .CardInner {
@@ -44,7 +42,7 @@
 }
 
 label {
-  font-family: "Hind", sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   display: block;
   color: #1E375AB3;
   margin-bottom: 12px;
@@ -58,7 +56,7 @@ label {
 input {
   background-color: #e3edf7;
   padding: 16px 32px;
-  border: none;
+  border: 1px solid #00ABE4;
   display: block;
   font-family: 'Orbitron', sans-serif;
   font-weight: 600;

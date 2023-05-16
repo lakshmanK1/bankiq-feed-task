@@ -5,7 +5,7 @@ function Sorting(props) {
   const {getSortByValue, urlSortParamsValue} = props;
 
   return (
-    <div>
+    <div className="sorting-div">
       <select
         data-testid="sort-component"
         className="selectEle"

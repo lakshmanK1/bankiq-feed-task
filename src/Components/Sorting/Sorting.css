@@ -1,3 +1,7 @@
+/* .sorting-div{
+  width: 40%;
+} */
+
 .selectEle {
   background-color: #00ABE4;
   margin: 5px;
@@ -6,6 +10,7 @@
   width: 180px;
   border: none;
   font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   -webkit-appearance: button;
   appearance: button;
@@ -14,4 +19,6 @@
 
 .option{
     padding: 1rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+

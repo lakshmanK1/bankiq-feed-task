@@ -20,11 +20,9 @@ function App() {
 
 
   return (
-    <>
+    <div className="app-div">
       <h1 className="header">
-        <span className="Icon">
           <FcMindMap />
-        </span>
         Available Feeds
       </h1>
       <div className="searchsortDiv">
@@ -40,7 +38,7 @@ function App() {
         page={page}
         selectPageHandler={selectPageHandler}
       />
-    </>
+    </div>
   );
 }
 

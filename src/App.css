@@ -1,47 +1,41 @@
-.searchsortDiv{
-    margin: 20px;
-    padding: 0;
-    list-style-type: none;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
+.app-div {
+  width: 100%;
+  margin: 0 auto;
 }
 
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 100;
-    text-align: center;
-    color: #1e375a;
+.searchsortDiv {
+  width: 96%;
+  margin: 0 auto;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-body{
-    background-color: #E9F1FA;
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
+  text-align: center;
+  color: #1e375a;
+  padding: 0.5em;
+}
+
+body {
+  background-color: #e9f1fa;
 }
 
 .Icon {
-    min-width: 52px;
-    min-height: 52px;
-    border-radius: var(--border-radius);
-    box-shadow: 
-      -2px -2px 6px rgba(#fff, .6),
-      2px 2px 12px #c8d8e7;
-  }
+  border-radius: var(--border-radius);
+  box-shadow: -2px -2px 6px rgba(#fff, 0.6), 2px 2px 12px #c8d8e7;
+}
 
-
-  @media screen and (min-width: 768px) {
-    .searchsortDiv{
-      grid-template-columns: repeat(0, 1fr);
-    }
+@media screen and (max-width: 768px) {
+  .searchsortDiv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-
-  @media screen and (min-width: 992px) {
-    .searchsortDiv{
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+}

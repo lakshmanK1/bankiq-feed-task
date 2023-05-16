@@ -23,7 +23,7 @@ function Table({products, page}) {
                                 <td data-label='Title'>{prod.title}</td>
                                 <td data-label='Brand'>{prod.brand}</td>
                                 <td data-label='Category'>{prod.category}</td>
-                                <td data-label='Price'>₹ {prod.price}</td>
+                                <td data-label='Price'>$ {prod.price}</td>
                             </tr>
                         )
                     })

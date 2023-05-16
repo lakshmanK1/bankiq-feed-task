@@ -17,6 +17,7 @@ const ContextProvider = (props) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortParams, setSortParams] = useSearchParams();
+
   const urlSearchParamsValue = searchParams.get("searchBy");
   const urlSortParamsValue = sortParams.get("sortBy");
 
@@ -40,14 +41,16 @@ const ContextProvider = (props) => {
   };
 
   const searchInputChange = (val) => {
-    setSearchParams({ searchBy: val });
+    const copy = new URLSearchParams(searchParams);
+    copy.set("searchBy", val);
+    setSearchParams(copy);
     dispatch({ type: "OnChangeOfSearchValue", payload: val });
   };
 
   const getSortByValue = (value) => {
     const copy = new URLSearchParams(sortParams);
     copy.set("sortBy", value);
-    setSearchParams(copy);
+    setSortParams(copy);
     dispatch({ type: "OnChangeOfSortByValue", payload: value });
   };
 
